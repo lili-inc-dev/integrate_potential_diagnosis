@@ -1,0 +1,1 @@
+ALTER TABLE `admins` ADD COLUMN `email` VARCHAR(255) UNIQUE NOT NULL AFTER `firebase_uid`;

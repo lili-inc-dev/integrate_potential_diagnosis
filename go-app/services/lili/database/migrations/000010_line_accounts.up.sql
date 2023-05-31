@@ -1,0 +1,11 @@
+DROP TABLE IF EXISTS `line_accounts`;
+
+CREATE TABLE `line_accounts` (
+  `line_id` VARCHAR(50) COMMENT 'LINEユーザID',
+  `name` VARCHAR(30) NOT NULL COMMENT 'LINE表示名',
+  `icon_url` VARCHAR(255) DEFAULT null COMMENT 'LINEアイコン画像URL',
+  `status_message` TEXT DEFAULT null COMMENT 'LINEステータスメッセージ',
+  `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL,
+  PRIMARY KEY (`line_id`)
+);

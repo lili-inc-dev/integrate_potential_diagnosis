@@ -1,0 +1,31 @@
+Name: lili-api
+Host: 0.0.0.0
+Port: 8080
+Timeout: 60000
+Log:
+  Encoding: plain
+DataSource: root:root@tcp(lili-labo-db:3306)/lili_labo?parseTime=true&loc=Asia%2FTokyo
+MigrationURL: file://./database/migrations
+AdminTable: admins
+UserTable: users
+AdminRoleTable: admin_roles
+Cache:
+  - Host: lili-labo-redis:6379
+AppEnv: local
+FrontURL: http://localhost:3000
+FrontAdminURL: http://localhost:3001
+SessionKey: # 本番では秘密鍵をセット
+TZ: Asia/Tokyo
+GoogleApplicationCredentials:
+# GoogleApplicationCredentials: ../service-account-file.json
+FirebaseAuthEmulatorHost: lili-labo-firebase:9099 # 本番不要
+GCloudProject: lili-labo-dev # 本番不要
+FirebaseWebAPIKey: test
+LineLoginChannelID: 0
+LineLoginChannelSecret: test
+LineMsgAPIChannelSecret: test
+LineMsgAPIChannelAccessToken: test
+AwsAccessKey:
+AwsSecret:
+ServiceEmailAddress: noreply@lili-style.jp
+ContactEmail: test

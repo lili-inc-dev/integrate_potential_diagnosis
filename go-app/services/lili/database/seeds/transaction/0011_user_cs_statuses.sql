@@ -1,0 +1,20 @@
+INSERT INTO `user_cs_statuses`(
+  `id`,
+  `user_id`,
+  `status`
+) VALUES
+(
+  '01GETX9AC7CWG05JQ1BBQ5JEBB',
+  '01GC6YPV5MDMB0ZT6YNXD3VJAA',
+  'register_only'
+),
+(
+  '01GETXAD346PTVPVHGCDK33FSK',
+  '01GDWXNZ88WDGJNJ2J3E5MGEN9',
+  'register_only'
+),
+(
+  '01GETXAQD7G3RW2GR1GNMZJC1Q',
+  '01GDWXVQ66PCD4EBPFBMQPFCWD',
+  'diagnosing'
+)

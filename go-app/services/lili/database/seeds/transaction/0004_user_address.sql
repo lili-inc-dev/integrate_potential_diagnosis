@@ -1,0 +1,24 @@
+INSERT INTO `user_addresses`(
+  `id`,
+  `user_id`,
+  `postal_code`,
+  `address`
+) VALUES
+(
+  '01GC6YPV5MDMB0ZT6YNXD3VJAB',
+  '01GC6YPV5MDMB0ZT6YNXD3VJAA',
+  '111-1111',
+  'テスト住所'
+),
+(
+  '01GDWZPWMR7CKN8V3ABXPATVB6',
+  '01GDWXNZ88WDGJNJ2J3E5MGEN9',
+  '111-1111',
+  'テスト住所2'
+),
+(
+  '01GDWZQ7569R1GAJZKNVFF1EZS',
+  '01GDWXVQ66PCD4EBPFBMQPFCWD',
+  '111-1111',
+  'テスト住所3'
+);

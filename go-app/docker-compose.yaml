@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  lili-mysql:
+    build: ../docker-local/db
+    container_name: lili-labo-db
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: lili_labo
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ../docker-local/db/my.cnf:/etc/mysql/conf.d/custom.cnf
+      - ../docker-local/db/data:/var/lib/mysql
+      - ../back/seeds/sql:/usr/local/sql
+  lili-redis:
+    image: "redis:alpine"
+    container_name: lili-labo-redis
+    ports:
+      - 6379:6379
+  lili-back:
+    build: ../docker-local/back
+    container_name: lili-labo-back
+    volumes:
+      - ./:/back
+    working_dir: /back/services/lili
+    ports:
+      - 8080:8080
+    env_file:
+      - ./services/lili/.env
+    tty: true
+    stdin_open: true
+    depends_on:
+      - lili-mysql
+      - lili-redis

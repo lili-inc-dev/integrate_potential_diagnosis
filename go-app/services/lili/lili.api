@@ -1,0 +1,650 @@
+syntax = "v1"
+
+info (
+	title: // TODO: add title
+	desc: // TODO: add description
+	author: // TODO: add author
+)
+
+@server(
+	prefix: /user
+)
+service lili-api {
+	@server(
+		handler: ContactHandler
+	)
+	post /contacts(ContactReq)
+}
+
+// inactive user
+// 認証処理が特殊なのでミドルウェア化はしない
+@server(
+	prefix: /user/inactive
+)
+service lili-api {
+	@server(
+		handler: FindInactiveUserHandler
+	)
+	get /inactive-users/me returns(FindInactiveUserRes)
+	@server(
+		handler: CreateInactiveUserHandler
+	)
+	post /inactive-users/me(CreateInactiveUserReq) returns(CreateInactiveUserRes)
+	@server(
+		handler: ConfirmInactiveUserEmailHandler
+	)
+	post /inactive-users/me/email/confirm(ConfirmInactiveUserEmailReq)
+	@server(
+		handler: ResendAuthCodeRequestHandler
+	)
+	post /inactive-users/me/email/resend-auth-code
+	@server(
+		handler: CreateUserHandler
+	)
+	post /users/me(CreateUserReq)
+	
+	// 以下、マスターデータ用API
+	@server(
+		handler: FindInactiveUserGenderListHandler
+	)
+	get /master/genders returns(FindGenderListRes)
+	@server(
+		handler: FindInactiveUserServiceTriggerListHandler
+	)
+	get /master/service-triggers returns(FindServiceTriggerListRes)
+	@server(
+		handler: FindInactiveUserDesiredAnnualIncomeListHandler
+	)
+	get /master/desired-annual-incomes returns(FindDesiredAnnualIncomeListRes)
+	@server(
+		handler: FindInactiveUserInterestTopicListHandler
+	)
+	get /master/interest-topics returns(FindInterestTopicListRes)
+}
+
+// user
+@server(
+	prefix: /user
+	middleware: AuthenticateUser
+)
+service lili-api {
+	@server(
+		handler: CreateDiagnoseStartHandler
+	)
+	post /diagnoses/me/start
+	@server(
+		handler: FindPersonalityDiagnoseHandler
+	)
+	get /personality-diagnoses(FindPersonalityDiagnoseReq) returns(FindPersonalityDiagnoseRes)
+	@server(
+		handler: FindPersonalityDiagnoseAnswerResultHandler
+	)
+	get /personality-diagnose-answers/me returns(FindPersonalityDiagnoseAnswerResultRes)
+	@server(
+		handler: CreatePersonalityDiagnoseAnswerHandler
+	)
+	post /personality-diagnose-answers/me(CreatePersonalityDiagnoseAnswerReq)
+	@server(
+		handler: FindMarketValueDiagnoseHandler
+	)
+	get /market-value-diagnoses(FindMarketValueDiagnoseReq) returns(FindMarketValueDiagnoseRes)
+	@server(
+		handler: FindMarketValueDiagnoseAnswerResultHandler
+	)
+	get /market-value-diagnose-answers/me returns(FindMarketValueDiagnoseAnswerResultRes)
+	@server(
+		handler: CreateMarketValueDiagnoseAnswerHandler
+	)
+	post /market-value-diagnose-answers/me(CreateMarketValueDiagnoseAnswerReq)
+	@server (
+		handler : GeneralUserDetailHandler
+	)
+	get /general-users/me returns(GeneralUserDetailRes)
+	@server (
+		handler : UpdateGeneralUserHandler
+	)
+	put /update-general-users/me(UpdateGeneralUserReq)
+	@server(
+		handler: CreateCareerWorkAnswerHandler
+	)
+	post /career-work-answers/me(CreateCareerWorkAnswerReq)
+	@server(
+		handler: FindNoticeListHandler
+	)
+	get /notices(FindNoticeListReq) returns(FindNoticeListRes)
+	@server(
+		handler: UnregisterUserHandler
+	)
+	delete /users/me(UnregisterUserReq)
+	
+	// 以下、マスターデータ用API
+	@server(
+		handler: FindGenderListHandler
+	)
+	get /master/genders returns(FindGenderListRes)
+	@server(
+		handler: FindServiceTriggerListHandler
+	)
+	get /master/service-triggers returns(FindServiceTriggerListRes)
+	@server(
+		handler: FindDesiredAnnualIncomeListHandler
+	)
+	get /master/desired-annual-incomes returns(FindDesiredAnnualIncomeListRes)
+	@server(
+		handler: FindInterestTopicListHandler
+	)
+	get /master/interest-topics returns(FindInterestTopicListRes)
+}
+
+// line
+service lili-api {
+	@server(
+		handler: LineLoginHandler
+	)
+	get /line/login
+	@server(
+		handler: LineCallbackHandler
+	)
+	post /line/callback(LineCallbackReq) returns(LineCallbackRes)
+	// @server(
+	// 	handler: LineWebhookHandler
+	// )
+	// get /line/webhook
+}
+
+// admin
+@server(
+	prefix: /admin
+	middleware: AuthenticateAdmin
+)
+service lili-api {
+	@server(
+		handler: FindAdminHandler
+	)
+	get /admins/:id(FindAdminReq) returns(FindAdminRes)
+	@server(
+		handler: FindAdminListHandler
+	)
+	get /admins(FindAdminListReq) returns(FindAdminListRes)
+	@server(
+		handler: CreateAdminHandler
+	)
+	post /admins(CreateAdminReq)
+	@server(
+		handler: UpdateAdminHandler
+	)
+	put /admins/:id(UpdateAdminReq)
+	
+	@server(
+		handler: FindAdminRoleListHandler
+	)
+	get /admin-roles returns(FindAdminRoleListRes)
+	
+	@server(
+		handler: FindMyPageHandler
+	)
+	get /mypages returns(FindMyPageRes)
+	@server(
+		handler: UpdateMyPageHandler
+	)
+	put /mypages(UpdateMyPageReq)
+	@server(
+		handler: FrontUserListHandler
+	)
+	get /users(FrontUserListReq) returns(FrontUserListRes)
+	@server(
+		handler: FrontUserDetailHandler
+	)
+	get /users/:id(FrontUserDetailReq) returns(FrontUserDetailRes)
+	
+	@server(
+		handler: UpdateFrontUserHandler
+	)
+	put /users/:id(UpdateFrontUserReq)
+	@server(
+		handler: FindUserDiagnoseHandler
+	)
+	get /diagnose-results/:answer_group_id(DiagnoseResultReq) returns(DiagnoseResultRes)
+	@server(
+		handler: FindNoticeListForAdminHandler
+	)
+	get /notices(FindNoticeListForAdminReq) returns(FindNoticeListForAdminRes)
+	@server(
+		handler: FindNoticeDetailForAdminHandler
+	)
+	get /notices/:id(FindNoticeDetailForAdminReq) returns(FindNoticeDetailForAdminRes)
+	@server(
+		handler: CreateNoticeHandler
+	)
+	post /notices(CreateNoticeReq)
+	@server(
+		handler: UpdateNoticeHandler
+	)
+	put /notices/:id(UpdateNoticeReq)
+}
+
+type (
+	CreateAdminReq {
+		RoleId      uint64 `json:"role_id"`
+		Email       string `json:"email"`
+		Password    string `json:"password"`
+		Name        string `json:"name"`
+		Affiliation string `json:"affiliation,optional,omitempty"`
+		IsDisabled  bool   `json:"is_disabled"`
+	}
+	UpdateAdminReq {
+		Id          uint64  `path:"id"`
+		RoleId      uint64  `json:"role_id"`
+		Email       string  `json:"email"`
+		Name        string  `json:"name"`
+		Affiliation *string `json:"affiliation,optional,omitempty"`
+		IsDisabled  bool    `json:"is_disabled"`
+	}
+	CareerWorkAnswer {
+		QuestionKey string `json:"question_key"`
+		Answer      string `json:"answer"`
+		Index       int64  `json:"index"`
+	}
+	CreateCareerWorkAnswerReq {
+		Answers []CareerWorkAnswer `json:"answers"`
+	}
+	ContactReq {
+		Name    string  `json:"name"`
+		Email   string  `json:"email"`
+		Content *string `json:"content,optional"`
+	}
+	FindNoticeListReq {
+		Page     uint64 `form:"page,optional,default=1"`
+		PageSize uint64 `form:"page_size,range=[1:30],optional,default=10"`
+	}
+	Notice {
+		Id         uint64 `json:"id"`
+		Title      string `json:"title"`
+		Content    string `json:"content"`
+		IsReleased bool   `json:"is_released"`
+		CreatedAt  string `json:"created_at"`
+		UpdatedAt  string `json:"updated_at"`
+	}
+	NoticeForUser {
+		Id        uint64 `json:"id"`
+		Title     string `json:"title"`
+		Content   string `json:"content"`
+		CreatedAt string `json:"created_at"`
+		UpdatedAt string `json:"updated_at"`
+	}
+	FindNoticeListRes {
+		PageCount uint64          `json:"page_count"`
+		Notices   []NoticeForUser `json:"notices"`
+	}
+	FindNoticeListForAdminReq {
+		Page     uint64 `form:"page,optional,default=1"`
+		PageSize uint64 `form:"page_size,range=[1:30],optional,default=10"`
+	}
+	FindNoticeListForAdminRes {
+		PageCount uint64   `json:"page_count"`
+		Notices   []Notice `json:"notices"`
+	}
+	FindNoticeDetailForAdminReq {
+		Id uint64 `path:"id"`
+	}
+	FindNoticeDetailForAdminRes {
+		Notice Notice `json:"notice"`
+	}
+	CreateNoticeReq {
+		Title      string `json:"title"`
+		Content    string `json:"content"`
+		IsReleased bool   `json:"is_released"`
+	}
+	UpdateNoticeReq {
+		Id         uint64 `path:"id"`
+		Title      string `json:"title"`
+		Content    string `json:"content"`
+		IsReleased bool   `json:"is_released"`
+	}
+	PersonalityDiagnoseQuestion {
+		Id            uint64 `json:"id"`
+		PersonalityID uint64 `json:"personality_id"`
+		Index         int64  `json:"index"`
+		Content       string `json:"content"`
+	}
+	PersonalityDiagnoseChoice {
+		Id   uint64 `json:"id"`
+		Name string `json:"name"`
+	}
+	FindPersonalityDiagnoseReq {
+		QuestionPage       *uint64 `form:"question_page,optional"`
+		QuestionPageSize   uint64  `form:"question_page_size,range=[1:30],optional,default=10"`
+		TotalQuestionCount bool    `form:"total_question_count,optional,default=false"`
+		Choice             bool    `form:"choice,optional,default=false"`
+		PerfectPoint       bool    `form:"perfect_point,optional,default=false"`
+	}
+	FindPersonalityDiagnoseRes {
+		TotalQuestionCount *uint64                       `json:"total_question_count"`
+		Questions          []PersonalityDiagnoseQuestion `json:"questions"`
+		Choices            []PersonalityDiagnoseChoice   `json:"choices"`
+		PerfectPoint       *uint64                       `json:"perfect_point"`
+	}
+	PersonalityDiagnoseAnswerResult {
+		PersonalityName string `json:"personality_name"`
+		TotalPoint      uint64 `json:"total_point"`
+	}
+	FindPersonalityDiagnoseAnswerResultRes {
+		Results []PersonalityDiagnoseAnswerResult `json:"results"`
+	}
+	PersonalityDiagnoseAnswer {
+		QuestionId uint64 `json:"question_id"`
+		ChoiceId   uint64 `json:"choice_id"`
+	}
+	CreatePersonalityDiagnoseAnswerReq {
+		Answers []PersonalityDiagnoseAnswer `json:"answers"`
+	}
+	AdminRole {
+		Id             uint64 `json:"id"`
+		Name           string `json:"name"`
+		AdminBrowsable bool   `json:"admin_browsable"`
+		AdminEditable  bool   `json:"admin_editable"`
+		UserBrowsable  bool   `json:"user_browsable"`
+		UserEditable   bool   `json:"user_editable"`
+		// CompanyBrowsable        bool   `json:"company_browsable"`
+		// CompanyEditable         bool   `json:"company_editable"`
+		// ProjectBrowsable        bool   `json:"project_browsable"`
+		// ProjectEditable         bool   `json:"project_editable"`
+		// ProjectDisclosable      bool   `json:"project_disclosable"`
+		// ProjectCommentBrowsable bool   `json:"project_comment_browsable"`
+		// ProjectCommentEditable  bool   `json:"project_comment_editable"`
+		// ProjectCommentPostable  bool   `json:"project_comment_postable"`
+		NoticeBrowsable bool `json:"notice_browsable"`
+		NoticeEditable  bool `json:"notice_editable"`
+	}
+	AdminRoleWithGrantedCount {
+		Id           uint64  `json:"id"`
+		Name         string  `json:"name"`
+		Description  *string `json:"description"`
+		GrantedCount uint64  `json:"granted_count"`
+	}
+	FindAdminRoleListRes {
+		AdminRoles []AdminRoleWithGrantedCount `json:"admin_roles"`
+	}
+	InterestTopic {
+		Id   uint64 `json:"id"`
+		Name string `json:"name"`
+	}
+	DesiredAnnualIncome {
+		Id    uint64 `json:"id"`
+		Value string `json:"value"`
+	}
+	GeneralEditUser {
+		Email                 string          `json:"email"`
+		Name                  string          `json:"name"`
+		NickName              string          `json:"nickName"`
+		GenderId              uint64          `json:"gender_id"`
+		University            string          `json:"university"`
+		Faculty               string          `json:"faculty"`
+		Department            string          `json:"department"`
+		GraduationYear        uint64          `json:"graduation_year"`
+		Birthday              string          `json:"birthday"`
+		PhoneNumber           string          `json:"phone_number"`
+		PostalCode            string          `json:"postal_code"`
+		Address               string          `json:"address"`
+		ServiceTriggerId      uint64          `json:"service_trigger_id"`
+		ServiceTriggerDetail  *string         `json:"service_trigger_detail"`
+		Introducer            *string         `json:"introducer"`
+		DesiredAnnualIncomeId uint64          `json:"desired_annual_income_id"`
+		InterestTopics        []InterestTopic `json:"interest_topics"`
+	}
+	Gender {
+		Id   uint64 `json:"id"`
+		Name string `json:"name"`
+	}
+	ServiceTrigger {
+		Id   uint64 `json:"id"`
+		Name string `json:"name"`
+	}
+	GeneralUserDetailRes {
+		Email                    string          `json:"email"`
+		Name                     string          `json:"name"`
+		Nickname                 string          `json:"nickname"`
+		GenderName               string          `json:"gender_name"`
+		University               string          `json:"university"`
+		Faculty                  string          `json:"faculty"`
+		Department               string          `json:"department"`
+		GraduationYear           uint64          `json:"graduation_year"`
+		Birthday                 string          `json:"birthday"`
+		PhoneNumber              string          `json:"phone_number"`
+		PostalCode               string          `json:"postal_code"`
+		Address                  string          `json:"address"`
+		ServiceTriggerId         uint64          `json:"service_trigger_id"`
+		ServiceTriggerName       string          `json:"service_trigger_name"`
+		ServiceTriggerDetail     *string         `json:"service_trigger_detail"`
+		DesiredAnnualIncomeId    uint64          `json:"desired_annual_income_id"`
+		DesiredAnnualIncomeValue string          `json:"desired_annual_income_value"`
+		InterestTopics           []InterestTopic `json:"interest_topics"`
+		Introducer               *string         `json:"introducer"`
+		LineId                   string          `json:"line_id"`
+		LineName                 string          `json:"line_name"`
+		IconUrl                  string          `json:"icon_url"`
+		StatusMessage            string          `json:"status_message"`
+	}
+	UpdateGeneralUserReq {
+		Name                  string   `json:"name"`
+		NickName              string   `json:"nickname"`
+		GenderId              uint64   `json:"gender_id"`
+		University            string   `json:"university"`
+		Faculty               string   `json:"faculty"`
+		Department            string   `json:"department"`
+		GraduationYear        uint64   `json:"graduation_year"`
+		Birthday              string   `json:"birthday"`
+		PhoneNumber           string   `json:"phone_number"`
+		PostalCode            string   `json:"postal_code"`
+		Address               string   `json:"address"`
+		ServiceTriggerId      uint64   `json:"service_trigger_id"`
+		ServiceTriggerDetail  *string  `json:"service_trigger_detail,optional"`
+		Introducer            *string  `json:"introducer,optional"`
+		DesiredAnnualIncomeId uint64   `json:"desired_annual_income_id"`
+		InterestTopicIds      []uint64 `json:"interest_topic_ids"`
+	}
+	MarketValueDiagnoseQuestion {
+		Id            uint64 `json:"id"`
+		MarketValueId uint64 `json:"market_value_id"`
+		Index         int64  `json:"index"`
+		Content       string `json:"content"`
+	}
+	MarketValueDiagnoseChoice {
+		Id   uint64 `json:"id"`
+		Name string `json:"name"`
+	}
+	FindMarketValueDiagnoseReq {
+		QuestionPage       *uint64 `form:"question_page,optional"`
+		TotalQuestionCount bool    `form:"total_question_count,optional,default=false"`
+		TotalPageCount     bool    `form:"total_page_count,optional,default=false"`
+		Choice             bool    `form:"choice,optional,default=false"`
+		PerfectPoint       bool    `form:"perfect_point,optional,default=false"`
+	}
+	FindMarketValueDiagnoseRes {
+		TotalQuestionCount *uint64                       `json:"total_question_count"`
+		TotalPageCount     *uint64                       `json:"total_page_count"`
+		MarketValueName    *string                       `json:"market_value_name"`
+		Questions          []MarketValueDiagnoseQuestion `json:"questions"`
+		Choices            []MarketValueDiagnoseChoice   `json:"choices"`
+		PerfectPoint       *uint64                       `json:"perfect_point"`
+	}
+	MarketValueDiagnoseAnswerResult {
+		MarketValueName string `json:"market_value_name"`
+		TotalPoint      uint64 `json:"total_point"`
+	}
+	FindMarketValueDiagnoseAnswerResultRes {
+		Results []MarketValueDiagnoseAnswerResult `json:"results"`
+	}
+	MarketValueDiagnoseAnswer {
+		QuestionId uint64 `json:"question_id"`
+		ChoiceId   uint64 `json:"choice_id"`
+	}
+	CreateMarketValueDiagnoseAnswerReq {
+		Answers []MarketValueDiagnoseAnswer `json:"answers"`
+	}
+	LineCallbackReq {
+		AuthCode string `json:"auth_code"`
+		State    string `json:"state"`
+	}
+	LineCallbackRes {
+		FirebaseCustomToken string `json:"firebase_custom_token"`
+	}
+	FrontUser {
+		Id        string  `json:"id"`
+		IconUrl   string  `json:"icon_url"`
+		Name      string  `json:"name"`
+		UserType  string  `json:"user_type"`
+		LineId    string  `json:"line_id"`
+		Status    string  `json:"status"`
+		CsStatus  string  `json:"cs_status"`
+		Memo      *string `json:"memo"`
+		CreatedAt string  `json:"created_at"`
+	}
+	FrontUserListReq {
+		Search   *string `form:"search,optional,omitempty"`
+		CsStatus *string `form:"cs_status,optional,omitempty,options=register_only|diagnosing|normal"`
+		Page     uint64  `form:"page,optional,default=1"`
+		PageSize uint64  `form:"page_size,range=[1:30],optional,default=10"`
+	}
+	FrontUserListRes {
+		PageCount uint64      `json:"page_count"`
+		Users     []FrontUser `json:"users"`
+	}
+	FrontUserDetailReq {
+		Id                      string `path:"id"`
+		DiagnoseHistoryPage     uint64 `form:"diagnose_history_page"`
+		DiagnoseHistoryPageSize uint64 `form:"diagnose_history_page_size,range=[1:30],optional,default=10"`
+	}
+	DiagnoseHistory {
+		DiagnoseType  string `json:"diagnose_type"`
+		DiagnoseName  string `json:"diagnose_name"`
+		AnswerGroupId string `json:"answer_group_id"`
+		CreatedAt     string `json:"created_at"`
+	}
+	FrontUserDetailRes {
+		Id                       string            `json:"id"`
+		LineId                   string            `json:"line_id"`
+		UserType                 string            `json:"user_type"`
+		Gender                   string            `json:"gender"`
+		Name                     string            `json:"name"`
+		Nickname                 string            `json:"nickname"`
+		IconUrl                  string            `json:"icon_url"`
+		University               string            `json:"university"`
+		Faculty                  string            `json:"faculty"`
+		Department               string            `json:"department"`
+		GraduationYear           uint64            `json:"graduation_year"`
+		Birthday                 string            `json:"birthday"`
+		Email                    string            `json:"email"`
+		PhoneNumber              string            `json:"phone_number"`
+		PostalCode               string            `json:"postal_code"`
+		Address                  string            `json:"address"`
+		CreatedAt                string            `json:"created_at"`
+		ServiceTrigger           string            `json:"service_trigger"`
+		ServiceTriggerDetail     *string           `json:"service_trigger_detail"`
+		Introducer               *string           `json:"introducer"`
+		InterestTopics           []string          `json:"interest_topics"`
+		Memo                     *string           `json:"memo"`
+		Status                   string            `json:"status"`
+		CsStatus                 string            `json:"cs_status"`
+		DesiredAnnualIncome      string            `json:"desired_annual_income"`
+		DiagnoseHistories        []DiagnoseHistory `json:"diagnose_histories"`
+		DiagnoseHistoryPageCount uint64            `json:"diagnose_history_page_count"`
+	}
+	DiagnoseResultReq {
+		DiagnoseType  string `form:"diagnose_type,options=career_work|market_value|personality"`
+		AnswerGroupId string `path:"answer_group_id"`
+	}
+	DiagnoseResultRes {
+		PersonalityDiagnoseAnswerResult []PersonalityDiagnoseAnswerResult `json:"personality_diagnose_answer_result_list,optional,omitempty"`
+		MarketValueDiagnoseAnswerResult []MarketValueDiagnoseAnswerResult `json:"market_value_diagnose_answer_result_list,optional,omitempty"`
+		CareerWorkAnswer                []CareerWorkAnswer                `json:"career_work_answer_list,optional,omitempty"`
+	}
+	UpdateFrontUserReq {
+		Id     string  `path:"id"`
+		Memo   *string `json:"memo,optional,omitempty"`
+		Status string  `json:"status,options=registered|banned"`
+	}
+	AdminWithRoleInfo {
+		Id           uint64  `json:"id"`
+		RoleId       string  `json:"role_id"`
+		RoleName     string  `json:"role_name"`
+		Email        string  `json:"email"`
+		Name         string  `json:"name"`
+		LastAccessAt string  `json:"last_access_at"`
+		Affiliation  *string `json:"affiliation"`
+		Status       bool    `json:"is_disabled"`
+	}
+	FindAdminReq {
+		Id uint64 `path:"id"`
+	}
+	FindAdminRes {
+		Admin AdminWithRoleInfo `json:"admin"`
+	}
+	FindAdminListReq {
+		Page     uint64 `form:"page,optional,default=1"`
+		PageSize uint64 `form:"page_size,range=[1:30],optional,default=10"`
+	}
+	FindAdminListRes {
+		PageCount uint64              `json:"page_count"`
+		Admins    []AdminWithRoleInfo `json:"admins"`
+	}
+	FindMyPageRes {
+		Email string `json:"email"`
+	}
+	UpdateMyPageReq {
+		Password string `json:"password"`
+	}
+	FindInactiveUserRes {
+		LineId        string `json:"line_id"`
+		LineName      string `json:"line_name"`
+		IconUrl       string `json:"icon_url"`
+		StatusMessage string `json:"status_message"`
+		TypeId        uint64 `json:"type_id"`
+		Email         string `json:"email"`
+		Name          string `json:"name"`
+	}
+	CreateInactiveUserReq {
+		TypeId uint64 `json:"type_id"`
+		Email  string `json:"email"`
+		Name   string `json:"name"`
+	}
+	CreateInactiveUserRes {
+		FirebaseCustomToken string `json:"firebase_custom_token"`
+	}
+	ConfirmInactiveUserEmailReq {
+		AuthCode string `json:"auth_code"`
+	}
+	CreateUserReq {
+		Name                  string   `json:"name"`
+		NickName              string   `json:"nickname"`
+		GenderId              uint64   `json:"gender_id"`
+		University            string   `json:"university"`
+		Faculty               string   `json:"faculty"`
+		Department            string   `json:"department"`
+		GraduationYear        uint64   `json:"graduation_year"`
+		Birthday              string   `json:"birthday"`
+		PhoneNumber           string   `json:"phone_number"`
+		PostalCode            string   `json:"postal_code"`
+		Address               string   `json:"address"`
+		ServiceTriggerId      uint64   `json:"service_trigger_id"`
+		ServiceTriggerDetail  *string  `json:"service_trigger_detail,optional"`
+		Introducer            *string  `json:"introducer,optional"`
+		DesiredAnnualIncomeId uint64   `json:"desired_annual_income_id"`
+		InterestTopicIds      []uint64 `json:"interest_topic_ids"`
+	}
+	FindGenderListRes {
+		Genders []Gender `json:"genders"`
+	}
+	FindServiceTriggerListRes {
+		ServiceTriggers []ServiceTrigger `json:"service_triggers"`
+	}
+	FindDesiredAnnualIncomeListRes {
+		DesiredAnnualIncomes []DesiredAnnualIncome `json:"desired_annual_incomes"`
+	}
+	FindInterestTopicListRes {
+		InterestTopics []InterestTopic `json:"interest_topics"`
+	}
+	UnregisterUserReq {
+		UnregistrationReasonId uint64 `json:"unregistration_reason_id"`
+	}
+)

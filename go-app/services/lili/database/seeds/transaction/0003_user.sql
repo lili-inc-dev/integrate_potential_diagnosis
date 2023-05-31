@@ -1,0 +1,52 @@
+INSERT INTO `users`(
+  `id`,
+  `line_id`,
+  `type_id`,
+  `firebase_uid`,
+  `name`,
+  `name_kana`,
+  `gender_id`,
+  `birthday`,
+  `phone_number`,
+  `memo`,
+  `status`
+) VALUES
+(
+  '01GC6YPV5MDMB0ZT6YNXD3VJAA',
+  'test_line_id',
+  1,
+  '01GC720VDYEH358YP8ZB0ZWE9T',
+  '山田太郎',
+  'ヤマダタロウ',
+  1,
+  '2000-01-01',
+  '00000000000',
+  'メモ',
+  'registered'
+),
+(
+  '01GDWXNZ88WDGJNJ2J3E5MGEN9',
+  'test_line_id_2',
+  1,
+  '5Wvh4N3DfOKWfNFYwASImbSfiqZC',
+  '田中花子',
+  'タナカハナコ',
+  2,
+  '2000-01-01',
+  '11111111111',
+  'メモ\nメモ\nメモ',
+  'registered'
+),
+(
+  '01GDWXVQ66PCD4EBPFBMQPFCWD',
+  'test_line_id_3',
+  1,
+  '2VzGnR9Re5IcMVAsi9mZD6IKSh6r',
+  '木村次郎',
+  'キムラジロウ',
+  1,
+  '2000-01-01',
+  '00000000000',
+  null,
+  'banned'
+);

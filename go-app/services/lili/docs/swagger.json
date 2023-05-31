@@ -1,0 +1,2310 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "",
+    "version": ""
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/admin/admin-roles": {
+      "get": {
+        "operationId": "FindAdminRoleListHandler",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/FindAdminRoleListRes"
+            }
+          }
+        },
+        "requestBody": {},
+        "tags": [
+          "lili-api"
+        ]
+      }
+    },
+    "/admin/admins": {
+      "get": {
+        "operationId": "FindAdminListHandler",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/FindAdminListRes"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "lili-api"
+        ]
+      },
+      "post": {
+        "operationId": "CreateAdminHandler",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateAdminReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "lili-api"
+        ]
+      }
+    },
+    "/admin/admins/{id}": {
+      "get": {
+        "operationId": "FindAdminHandler",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/FindAdminRes"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "lili-api"
+        ]
+      },
+      "put": {
+        "operationId": "UpdateAdminHandler",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateAdminReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "lili-api"
+        ]
+      }
+    },
+    "/admin/mypages": {
+      "get": {
+        "operationId": "FindMyPageHandler",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/FindMyPageRes"
+            }
+          }
+        },
+        "requestBody": {},
+        "tags": [
+          "lili-api"
+        ]
+      },
+      "put": {
+        "operationId": "UpdateMyPageHandler",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateMyPageReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "lili-api"
+        ]
+      }
+    },
+    "/admin/notices": {
+      "get": {
+        "operationId": "FindNoticeListForAdminHandler",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/FindNoticeListForAdminRes"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "lili-api"
+        ]
+      },
+      "post": {
+        "operationId": "CreateNoticeHandler",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateNoticeReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "lili-api"
+        ]
+      }
+    },
+    "/admin/notices/{id}": {
+      "get": {
+        "operationId": "FindNoticeDetailForAdminHandler",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/FindNoticeDetailForAdminRes"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "lili-api"
+        ]
+      },
+      "put": {
+        "operationId": "UpdateNoticeHandler",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateNoticeReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "lili-api"
+        ]
+      }
+    },
+    "/admin/test-admin-auth": {
+      "get": {
+        "operationId": "TestAdminAuthHandler",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/TestAdminAuthRes"
+            }
+          }
+        },
+        "requestBody": {},
+        "tags": [
+          "lili-api"
+        ]
+      }
+    },
+    "/admin/users": {
+      "get": {
+        "operationId": "FrontUserListHandler",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/FrontUserListRes"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "required": true,
+            "type": "invalid",
+            "format": "UNKNOWN"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "lili-api"
+        ]
+      }
+    },
+    "/admin/users/{id}": {
+      "get": {
+        "operationId": "FrontUserDetailHandler",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/FrontUserDetailRes"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "diagnose_history_page",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "lili-api"
+        ]
+      },
+      "put": {
+        "operationId": "UpdateFrontUserHandler",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateFrontUserReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "lili-api"
+        ]
+      }
+    },
+    "/admin/users/{id}/diagnose": {
+      "get": {
+        "operationId": "FindUserDiagnoseHandler",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DiagnoseResultRes"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "diagnose_type",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "answer_group_id",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "lili-api"
+        ]
+      }
+    },
+    "/line/callback": {
+      "post": {
+        "operationId": "LineCallbackHandler",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/LineCallbackRes"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LineCallbackReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "lili-api"
+        ]
+      }
+    },
+    "/line/login": {
+      "get": {
+        "operationId": "LineLoginHandler",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "requestBody": {},
+        "tags": [
+          "lili-api"
+        ]
+      }
+    },
+    "/user/career-work-answers/me": {
+      "post": {
+        "operationId": "CreateCareerWorkAnswerHandler",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateCareerWorkAnswerReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "lili-api"
+        ]
+      }
+    },
+    "/user/general-users/me": {
+      "get": {
+        "operationId": "GeneralUserDetailHandler",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GeneralUserDetailRes"
+            }
+          }
+        },
+        "requestBody": {},
+        "tags": [
+          "lili-api"
+        ]
+      }
+    },
+    "/user/general-users/me/edit": {
+      "get": {
+        "operationId": "GeneralEditHandler",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GeneralEditUserRes"
+            }
+          }
+        },
+        "requestBody": {},
+        "tags": [
+          "lili-api"
+        ]
+      }
+    },
+    "/user/market-value-diagnose-answers/me": {
+      "get": {
+        "operationId": "FindMarketValueDiagnoseAnswerResultHandler",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/FindMarketValueDiagnoseAnswerResultRes"
+            }
+          }
+        },
+        "requestBody": {},
+        "tags": [
+          "lili-api"
+        ]
+      },
+      "post": {
+        "operationId": "CreateMarketValueDiagnoseAnswerHandler",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateMarketValueDiagnoseAnswerReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "lili-api"
+        ]
+      }
+    },
+    "/user/market-value-diagnoses": {
+      "get": {
+        "operationId": "FindMarketValueDiagnoseHandler",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/FindMarketValueDiagnoseRes"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "lili-api"
+        ]
+      }
+    },
+    "/user/notices": {
+      "get": {
+        "operationId": "FindNoticeListHandler",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/FindNoticeListRes"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "lili-api"
+        ]
+      }
+    },
+    "/user/personality-diagnose-answers/me": {
+      "get": {
+        "operationId": "FindPersonalityDiagnoseAnswerResultHandler",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/FindPersonalityDiagnoseAnswerResultRes"
+            }
+          }
+        },
+        "requestBody": {},
+        "tags": [
+          "lili-api"
+        ]
+      },
+      "post": {
+        "operationId": "CreatePersonalityDiagnoseAnswerHandler",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreatePersonalityDiagnoseAnswerReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "lili-api"
+        ]
+      }
+    },
+    "/user/personality-diagnoses": {
+      "get": {
+        "operationId": "FindPersonalityDiagnoseHandler",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/FindPersonalityDiagnoseRes"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "lili-api"
+        ]
+      }
+    },
+    "/user/test-user-auth": {
+      "get": {
+        "operationId": "TestUserAuthHandler",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/TestUserAuthRes"
+            }
+          }
+        },
+        "requestBody": {},
+        "tags": [
+          "lili-api"
+        ]
+      }
+    },
+    "/user/update-general-users/me": {
+      "put": {
+        "operationId": "UpdateGeneralUserHandler",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateGeneralUserReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "lili-api"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "AdminRole": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "admin_browsable": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "admin_editable": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "user_browsable": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "user_editable": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "notice_browsable": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "notice_editable": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      },
+      "title": "AdminRole",
+      "required": [
+        "id",
+        "name",
+        "admin_browsable",
+        "admin_editable",
+        "user_browsable",
+        "user_editable",
+        "notice_browsable",
+        "notice_editable"
+      ]
+    },
+    "AdminRoleWithGrantedCount": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "$ref": "#/definitions/string"
+        },
+        "granted_count": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "AdminRoleWithGrantedCount",
+      "required": [
+        "id",
+        "name",
+        "description",
+        "granted_count"
+      ]
+    },
+    "AdminWithRoleInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "role_name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "last_access_at": {
+          "type": "string"
+        },
+        "affiliation": {
+          "$ref": "#/definitions/string"
+        },
+        "is_disabled": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      },
+      "title": "AdminWithRoleInfo",
+      "required": [
+        "id",
+        "role_name",
+        "email",
+        "name",
+        "last_access_at",
+        "affiliation",
+        "is_disabled"
+      ]
+    },
+    "CareerWorkAnswer": {
+      "type": "object",
+      "properties": {
+        "question_key": {
+          "type": "string"
+        },
+        "answer": {
+          "type": "string"
+        },
+        "index": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "CareerWorkAnswer",
+      "required": [
+        "question_key",
+        "answer",
+        "index"
+      ]
+    },
+    "CreateAdminReq": {
+      "type": "object",
+      "properties": {
+        "role_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "affiliation": {
+          "type": "string"
+        },
+        "is_disabled": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      },
+      "title": "CreateAdminReq",
+      "required": [
+        "role_id",
+        "email",
+        "password",
+        "name",
+        "affiliation",
+        "is_disabled"
+      ]
+    },
+    "CreateCareerWorkAnswerReq": {
+      "type": "object",
+      "properties": {
+        "answers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CareerWorkAnswer"
+          }
+        }
+      },
+      "title": "CreateCareerWorkAnswerReq",
+      "required": [
+        "answers"
+      ]
+    },
+    "CreateMarketValueDiagnoseAnswerReq": {
+      "type": "object",
+      "properties": {
+        "answers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MarketValueDiagnoseAnswer"
+          }
+        }
+      },
+      "title": "CreateMarketValueDiagnoseAnswerReq",
+      "required": [
+        "answers"
+      ]
+    },
+    "CreateNoticeReq": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "is_released": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      },
+      "title": "CreateNoticeReq",
+      "required": [
+        "title",
+        "content",
+        "is_released"
+      ]
+    },
+    "CreatePersonalityDiagnoseAnswerReq": {
+      "type": "object",
+      "properties": {
+        "answers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PersonalityDiagnoseAnswer"
+          }
+        }
+      },
+      "title": "CreatePersonalityDiagnoseAnswerReq",
+      "required": [
+        "answers"
+      ]
+    },
+    "DesiredAnnualIncome": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "title": "DesiredAnnualIncome",
+      "required": [
+        "id",
+        "value"
+      ]
+    },
+    "DiagnoseHistory": {
+      "type": "object",
+      "properties": {
+        "diagnose_type": {
+          "type": "string"
+        },
+        "diagnose_name": {
+          "type": "string"
+        },
+        "answer_group_id": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        }
+      },
+      "title": "DiagnoseHistory",
+      "required": [
+        "diagnose_type",
+        "diagnose_name",
+        "answer_group_id",
+        "created_at"
+      ]
+    },
+    "DiagnoseResultReq": {
+      "type": "object",
+      "properties": {
+        "diagnose_type": {
+          "type": "string"
+        },
+        "answer_group_id": {
+          "type": "string"
+        }
+      },
+      "title": "DiagnoseResultReq",
+      "required": [
+        "diagnose_type",
+        "answer_group_id"
+      ]
+    },
+    "DiagnoseResultRes": {
+      "type": "object",
+      "properties": {
+        "personality_diagnose_answer_result_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PersonalityDiagnoseAnswerResult"
+          }
+        },
+        "market_value_diagnose_answer_result_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MarketValueDiagnoseAnswerResult"
+          }
+        },
+        "career_work_answer_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CareerWorkAnswer"
+          }
+        }
+      },
+      "title": "DiagnoseResultRes",
+      "required": [
+        "personality_diagnose_answer_result_list",
+        "market_value_diagnose_answer_result_list",
+        "career_work_answer_list"
+      ]
+    },
+    "FindAdminListReq": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        }
+      },
+      "title": "FindAdminListReq",
+      "required": [
+        "page"
+      ]
+    },
+    "FindAdminListRes": {
+      "type": "object",
+      "properties": {
+        "admins": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AdminWithRoleInfo"
+          }
+        }
+      },
+      "title": "FindAdminListRes",
+      "required": [
+        "admins"
+      ]
+    },
+    "FindAdminReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "FindAdminReq",
+      "required": [
+        "id"
+      ]
+    },
+    "FindAdminRes": {
+      "type": "object",
+      "properties": {
+        "admin": {
+          "$ref": "#/definitions/AdminWithRoleInfo"
+        }
+      },
+      "title": "FindAdminRes",
+      "required": [
+        "admin"
+      ]
+    },
+    "FindAdminRoleListRes": {
+      "type": "object",
+      "properties": {
+        "admin_roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AdminRoleWithGrantedCount"
+          }
+        }
+      },
+      "title": "FindAdminRoleListRes",
+      "required": [
+        "admin_roles"
+      ]
+    },
+    "FindMarketValueDiagnoseAnswerResultRes": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MarketValueDiagnoseAnswerResult"
+          }
+        }
+      },
+      "title": "FindMarketValueDiagnoseAnswerResultRes",
+      "required": [
+        "results"
+      ]
+    },
+    "FindMarketValueDiagnoseReq": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        }
+      },
+      "title": "FindMarketValueDiagnoseReq",
+      "required": [
+        "page"
+      ]
+    },
+    "FindMarketValueDiagnoseRes": {
+      "type": "object",
+      "properties": {
+        "market_value_name": {
+          "type": "string"
+        },
+        "questions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MarketValueDiagnoseQuestion"
+          }
+        },
+        "choices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MarketValueDiagnoseChoice"
+          }
+        }
+      },
+      "title": "FindMarketValueDiagnoseRes",
+      "required": [
+        "market_value_name",
+        "questions",
+        "choices"
+      ]
+    },
+    "FindMyPageRes": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        }
+      },
+      "title": "FindMyPageRes",
+      "required": [
+        "email"
+      ]
+    },
+    "FindNoticeDetailForAdminReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "FindNoticeDetailForAdminReq",
+      "required": [
+        "id"
+      ]
+    },
+    "FindNoticeDetailForAdminRes": {
+      "type": "object",
+      "properties": {
+        "notice": {
+          "$ref": "#/definitions/Notice"
+        }
+      },
+      "title": "FindNoticeDetailForAdminRes",
+      "required": [
+        "notice"
+      ]
+    },
+    "FindNoticeListForAdminReq": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        }
+      },
+      "title": "FindNoticeListForAdminReq",
+      "required": [
+        "page"
+      ]
+    },
+    "FindNoticeListForAdminRes": {
+      "type": "object",
+      "properties": {
+        "notices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Notice"
+          }
+        }
+      },
+      "title": "FindNoticeListForAdminRes",
+      "required": [
+        "notices"
+      ]
+    },
+    "FindNoticeListReq": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        }
+      },
+      "title": "FindNoticeListReq",
+      "required": [
+        "page"
+      ]
+    },
+    "FindNoticeListRes": {
+      "type": "object",
+      "properties": {
+        "notices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NoticeForUser"
+          }
+        }
+      },
+      "title": "FindNoticeListRes",
+      "required": [
+        "notices"
+      ]
+    },
+    "FindPersonalityDiagnoseAnswerResultRes": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PersonalityDiagnoseAnswerResult"
+          }
+        }
+      },
+      "title": "FindPersonalityDiagnoseAnswerResultRes",
+      "required": [
+        "results"
+      ]
+    },
+    "FindPersonalityDiagnoseReq": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        }
+      },
+      "title": "FindPersonalityDiagnoseReq",
+      "required": [
+        "page"
+      ]
+    },
+    "FindPersonalityDiagnoseRes": {
+      "type": "object",
+      "properties": {
+        "questions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PersonalityDiagnoseQuestion"
+          }
+        },
+        "choices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PersonalityDiagnoseChoice"
+          }
+        }
+      },
+      "title": "FindPersonalityDiagnoseRes",
+      "required": [
+        "questions",
+        "choices"
+      ]
+    },
+    "FrontUser": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "icon_url": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "user_type": {
+          "type": "string"
+        },
+        "line_id": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "memo": {
+          "$ref": "#/definitions/string"
+        },
+        "created_at": {
+          "type": "string"
+        }
+      },
+      "title": "FrontUser",
+      "required": [
+        "id",
+        "icon_url",
+        "name",
+        "user_type",
+        "line_id",
+        "status",
+        "memo",
+        "created_at"
+      ]
+    },
+    "FrontUserDetailReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "diagnose_history_page": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "FrontUserDetailReq",
+      "required": [
+        "id",
+        "diagnose_history_page"
+      ]
+    },
+    "FrontUserDetailRes": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "nickname": {
+          "type": "string"
+        },
+        "icon_url": {
+          "type": "string"
+        },
+        "university": {
+          "type": "string"
+        },
+        "faculty": {
+          "type": "string"
+        },
+        "department": {
+          "type": "string"
+        },
+        "graduation_year": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "birthday": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "postal_code": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "created": {
+          "type": "string"
+        },
+        "service_trigger": {
+          "type": "string"
+        },
+        "service_trigger_detail": {
+          "$ref": "#/definitions/string"
+        },
+        "introducer": {
+          "$ref": "#/definitions/string"
+        },
+        "interest_topics": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "memo": {
+          "$ref": "#/definitions/string"
+        },
+        "desired_annual_income": {
+          "type": "string"
+        },
+        "diagnose_histories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DiagnoseHistory"
+          }
+        }
+      },
+      "title": "FrontUserDetailRes",
+      "required": [
+        "name",
+        "nickname",
+        "icon_url",
+        "university",
+        "faculty",
+        "department",
+        "graduation_year",
+        "birthday",
+        "email",
+        "postal_code",
+        "address",
+        "created",
+        "service_trigger",
+        "service_trigger_detail",
+        "introducer",
+        "interest_topics",
+        "memo",
+        "desired_annual_income",
+        "diagnose_histories"
+      ]
+    },
+    "FrontUserListReq": {
+      "type": "object",
+      "properties": {
+        "search": {
+          "$ref": "#/definitions/string"
+        },
+        "page": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "FrontUserListReq",
+      "required": [
+        "search",
+        "page"
+      ]
+    },
+    "FrontUserListRes": {
+      "type": "object",
+      "properties": {
+        "users": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FrontUser"
+          }
+        }
+      },
+      "title": "FrontUserListRes",
+      "required": [
+        "users"
+      ]
+    },
+    "Gender": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "Gender",
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    "GeneralEditUser": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "nickName": {
+          "type": "string"
+        },
+        "gender_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "university": {
+          "type": "string"
+        },
+        "faculty": {
+          "type": "string"
+        },
+        "department": {
+          "type": "string"
+        },
+        "graduation_year": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "birthday": {
+          "type": "string"
+        },
+        "phone_number": {
+          "type": "string"
+        },
+        "postal_code": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "service_trigger_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "service_trigger_detail": {
+          "$ref": "#/definitions/string"
+        },
+        "introducer": {
+          "$ref": "#/definitions/string"
+        },
+        "desired_annual_income_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "interest_topics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InterestTopic"
+          }
+        }
+      },
+      "title": "GeneralEditUser",
+      "required": [
+        "email",
+        "name",
+        "nickName",
+        "gender_id",
+        "university",
+        "faculty",
+        "department",
+        "graduation_year",
+        "birthday",
+        "phone_number",
+        "postal_code",
+        "address",
+        "service_trigger_id",
+        "service_trigger_detail",
+        "introducer",
+        "desired_annual_income_id",
+        "interest_topics"
+      ]
+    },
+    "GeneralEditUserRes": {
+      "type": "object",
+      "properties": {
+        "genders": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Gender"
+          }
+        },
+        "service_triggers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ServiceTrigger"
+          }
+        },
+        "user": {
+          "$ref": "#/definitions/GeneralEditUser"
+        },
+        "desired_annual_incomes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DesiredAnnualIncome"
+          }
+        },
+        "interest_topics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InterestTopic"
+          }
+        }
+      },
+      "title": "GeneralEditUserRes",
+      "required": [
+        "genders",
+        "service_triggers",
+        "user",
+        "desired_annual_incomes",
+        "interest_topics"
+      ]
+    },
+    "GeneralUserDetailRes": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "nickname": {
+          "type": "string"
+        },
+        "gender_name": {
+          "type": "string"
+        },
+        "university": {
+          "type": "string"
+        },
+        "faculty": {
+          "type": "string"
+        },
+        "department": {
+          "type": "string"
+        },
+        "graduation_year": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "birthday": {
+          "type": "string"
+        },
+        "phone_number": {
+          "type": "string"
+        },
+        "postal_code": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "desired_annual_income": {
+          "type": "string"
+        },
+        "interest_topics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InterestTopic"
+          }
+        }
+      },
+      "title": "GeneralUserDetailRes",
+      "required": [
+        "email",
+        "name",
+        "nickname",
+        "gender_name",
+        "university",
+        "faculty",
+        "department",
+        "graduation_year",
+        "birthday",
+        "phone_number",
+        "postal_code",
+        "address",
+        "desired_annual_income",
+        "interest_topics"
+      ]
+    },
+    "InterestTopic": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "InterestTopic",
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    "LineCallbackReq": {
+      "type": "object",
+      "properties": {
+        "auth_code": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        }
+      },
+      "title": "LineCallbackReq",
+      "required": [
+        "auth_code",
+        "state"
+      ]
+    },
+    "LineCallbackRes": {
+      "type": "object",
+      "properties": {
+        "firebase_custom_token": {
+          "type": "string"
+        }
+      },
+      "title": "LineCallbackRes",
+      "required": [
+        "firebase_custom_token"
+      ]
+    },
+    "MarketValueDiagnoseAnswer": {
+      "type": "object",
+      "properties": {
+        "question_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "choice_id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "MarketValueDiagnoseAnswer",
+      "required": [
+        "question_id",
+        "choice_id"
+      ]
+    },
+    "MarketValueDiagnoseAnswerResult": {
+      "type": "object",
+      "properties": {
+        "market_value_name": {
+          "type": "string"
+        },
+        "total_point": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "MarketValueDiagnoseAnswerResult",
+      "required": [
+        "market_value_name",
+        "total_point"
+      ]
+    },
+    "MarketValueDiagnoseChoice": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "weight": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "MarketValueDiagnoseChoice",
+      "required": [
+        "id",
+        "name",
+        "weight"
+      ]
+    },
+    "MarketValueDiagnoseQuestion": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "market_value_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "index": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "content": {
+          "type": "string"
+        }
+      },
+      "title": "MarketValueDiagnoseQuestion",
+      "required": [
+        "id",
+        "market_value_id",
+        "index",
+        "content"
+      ]
+    },
+    "Notice": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "is_released": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      },
+      "title": "Notice",
+      "required": [
+        "id",
+        "title",
+        "content",
+        "is_released",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    "NoticeForUser": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      },
+      "title": "NoticeForUser",
+      "required": [
+        "id",
+        "title",
+        "content",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    "PersonalityDiagnoseAnswer": {
+      "type": "object",
+      "properties": {
+        "question_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "choice_id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "PersonalityDiagnoseAnswer",
+      "required": [
+        "question_id",
+        "choice_id"
+      ]
+    },
+    "PersonalityDiagnoseAnswerResult": {
+      "type": "object",
+      "properties": {
+        "personality_name": {
+          "type": "string"
+        },
+        "total_point": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "PersonalityDiagnoseAnswerResult",
+      "required": [
+        "personality_name",
+        "total_point"
+      ]
+    },
+    "PersonalityDiagnoseChoice": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "weight": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "PersonalityDiagnoseChoice",
+      "required": [
+        "id",
+        "name",
+        "weight"
+      ]
+    },
+    "PersonalityDiagnoseQuestion": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "personality_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "index": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "content": {
+          "type": "string"
+        }
+      },
+      "title": "PersonalityDiagnoseQuestion",
+      "required": [
+        "id",
+        "personality_id",
+        "index",
+        "content"
+      ]
+    },
+    "ServiceTrigger": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "ServiceTrigger",
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    "TestAdminAuthRes": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "role_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "firebase_uid": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "affiliation": {
+          "type": "string"
+        },
+        "is_disabled": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      },
+      "title": "TestAdminAuthRes",
+      "required": [
+        "id",
+        "role_id",
+        "firebase_uid",
+        "name",
+        "affiliation",
+        "is_disabled",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    "TestUserAuthRes": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "line_id": {
+          "type": "string"
+        },
+        "type_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "firebase_uid": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "name_kana": {
+          "type": "string"
+        },
+        "gender_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "age": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "birthday": {
+          "type": "string"
+        },
+        "phone_number": {
+          "type": "string"
+        },
+        "memo": {
+          "type": "string"
+        },
+        "is_disabled": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      },
+      "title": "TestUserAuthRes",
+      "required": [
+        "id",
+        "line_id",
+        "type_id",
+        "firebase_uid",
+        "email",
+        "name",
+        "name_kana",
+        "gender_id",
+        "age",
+        "birthday",
+        "phone_number",
+        "memo",
+        "is_disabled",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    "UpdateAdminReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "role_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "affiliation": {
+          "$ref": "#/definitions/string"
+        },
+        "is_disabled": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      },
+      "title": "UpdateAdminReq",
+      "required": [
+        "id",
+        "role_id",
+        "email",
+        "password",
+        "name",
+        "affiliation",
+        "is_disabled"
+      ]
+    },
+    "UpdateFrontUserReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "memo": {
+          "$ref": "#/definitions/string"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateFrontUserReq",
+      "required": [
+        "id",
+        "memo",
+        "status"
+      ]
+    },
+    "UpdateGeneralUserReq": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "nickname": {
+          "type": "string"
+        },
+        "gender_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "university": {
+          "type": "string"
+        },
+        "faculty": {
+          "type": "string"
+        },
+        "department": {
+          "type": "string"
+        },
+        "graduation_year": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "birthday": {
+          "type": "string"
+        },
+        "phone_number": {
+          "type": "string"
+        },
+        "postal_code": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "service_trigger_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "service_trigger_detail": {
+          "$ref": "#/definitions/string"
+        },
+        "introducer": {
+          "$ref": "#/definitions/string"
+        },
+        "desired_annual_income_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "interest_topic_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "title": "UpdateGeneralUserReq",
+      "required": [
+        "name",
+        "nickname",
+        "gender_id",
+        "university",
+        "faculty",
+        "department",
+        "graduation_year",
+        "birthday",
+        "phone_number",
+        "postal_code",
+        "address",
+        "service_trigger_id",
+        "desired_annual_income_id",
+        "interest_topic_ids"
+      ]
+    },
+    "UpdateMyPageReq": {
+      "type": "object",
+      "properties": {
+        "password": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateMyPageReq",
+      "required": [
+        "password"
+      ]
+    },
+    "UpdateNoticeReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "is_released": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      },
+      "title": "UpdateNoticeReq",
+      "required": [
+        "id",
+        "title",
+        "content",
+        "is_released"
+      ]
+    }
+  },
+  "securityDefinitions": {
+    "apiKey": {
+      "type": "apiKey",
+      "description": "Enter JWT Bearer token **_only_**",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "apiKey": []
+    }
+  ]
+}

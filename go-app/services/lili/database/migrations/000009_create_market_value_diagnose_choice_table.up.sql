@@ -1,0 +1,11 @@
+DROP TABLE IF EXISTS `market_value_diagnose_choices`;
+
+CREATE TABLE `market_value_diagnose_choices` (
+  `id` INTEGER UNSIGNED AUTO_INCREMENT,
+  `name` VARCHAR(255) UNIQUE NOT NULL COMMENT '選択肢名（例：はい、いいえ）',
+  `weight` TINYINT UNSIGNED NOT NULL COMMENT '回答の重み',
+  `market_value_id` TINYINT UNSIGNED NOT NULL COMMENT '市場価値の項目ID',
+  `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL,
+  PRIMARY KEY (`id`)
+);

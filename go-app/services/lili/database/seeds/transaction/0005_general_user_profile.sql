@@ -1,0 +1,52 @@
+INSERT INTO `general_user_profiles`(
+  `id`,
+  `user_id`,
+  `nickname`,
+  `university`,
+  `faculty`,
+  `department`,
+  `graduation_year`,
+  `service_trigger_id`,
+  `service_trigger_detail`,
+  `introducer`,
+  `desired_annual_income_id`
+) VALUES
+(
+  '01GC6YPV5MDMB0ZT6YNXD3VJAC',
+  '01GC6YPV5MDMB0ZT6YNXD3VJAA',
+  'テストニックネーム',
+  'テスト大学',
+  'テスト学部',
+  'テスト学科',
+  2023,
+  1,
+  NULL,
+  'テスト紹介者',
+  1
+),
+(
+  '01GDWZSKF0TSYE698NFBBEQNT1',
+  '01GDWXNZ88WDGJNJ2J3E5MGEN9',
+  'テストニックネーム2',
+  'テスト大学2',
+  'テスト学部2',
+  'テスト学科2',
+  2024,
+  2,
+  NULL,
+  'テスト紹介者2',
+  2
+),
+(
+  '01GDWZSRRV0QQNAXH8694WCQA4',
+  '01GDWXVQ66PCD4EBPFBMQPFCWD',
+  'テストニックネーム3',
+  'テスト大学3',
+  'テスト学部3',
+  'テスト学科3',
+  2025,
+  8,
+  'テスト',
+  NULL,
+  3
+);

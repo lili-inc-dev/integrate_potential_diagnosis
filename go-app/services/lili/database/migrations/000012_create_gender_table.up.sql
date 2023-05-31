@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS `genders`;
+
+CREATE TABLE `genders` (
+  `id` TINYINT UNSIGNED AUTO_INCREMENT,
+  `name` VARCHAR(255) UNIQUE NOT NULL COMMENT '男性 or 女性',
+  PRIMARY KEY (`id`)
+);
